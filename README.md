@@ -1,70 +1,129 @@
-# Getting Started with Create React App
+# Chat Application Frontend - ReactJS
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This is the frontend implementation of a real-time chat application built with **ReactJS** and **Socket.IO**. The application allows users to create and join chat rooms, send and receive messages, and manage room membership dynamically. It also integrates user authentication with login and sign-up features.
 
-## Available Scripts
+---
 
-In the project directory, you can run:
+## Features
 
-### `npm start`
+1. **User Authentication**: 
+   - Login and Signup functionality.
+   - User data management using state.
+   
+2. **Chat Rooms**:
+   - Create chat rooms with unique names.
+   - Join or leave existing chat rooms using room IDs.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+3. **Real-time Messaging**:
+   - Send and receive messages instantly in chat rooms.
+   - View message history in the room.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+4. **Socket.IO Integration**:
+   - Communicate with the backend server over WebSockets for real-time updates.
 
-### `npm test`
+5. **Dynamic Routing**:
+   - Routes for login, signup, and the chat interface.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+6. **Frontend Styling**:
+   - Fully styled UI using CSS for an engaging user experience.
 
-### `npm run build`
+---
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## Installation and Setup
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Prerequisites:
+- **Node.js** installed on your system.
+- A backend server for WebSocket communication (Refer to the backend repository).
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Steps to Run:
 
-### `npm run eject`
+1. **Clone the Repository**:
+   ```bash
+   git clone https://github.com/diaaqassem/Chat-Application-Frontend---ReactJS.git
+   cd Chat-Application-Frontend---ReactJS
+   ```
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+2. **Install Dependencies**:
+   ```bash
+   npm install
+   ```
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+3. **Run the Development Server**:
+   ```bash
+   npm run start
+   ```
+   - The app will run on `http://localhost:3000`.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+---
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## Usage
 
-## Learn More
+### Login/Signup:
+- Navigate to the `/login` route to log in using existing credentials or to the `/signup` route to create a new account.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### Chat Functionalities:
+1. **User Identification**:
+   - Enter your unique user ID in the input field.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+2. **Room Management**:
+   - Create a room: Provide a unique room name and click "Create Room".
+   - Join a room: Enter the room ID to join and click "Join Room".
+   - Leave a room: Provide the room ID and click "Leave Room".
 
-### Code Splitting
+3. **Messaging**:
+   - Type your message in the message input field and click "Send" to broadcast it to the room.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+---
 
-### Analyzing the Bundle Size
+## File Structure
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+```
+src/
+├
+│─ ChatApp.js      # Main chat application component
+├─ Login.js        # Login functionality
+├─ SignUp.js       # Sign-up functionality
+├── App.js              # Entry point for routes
+├── index.css           # Styles for the application
+├── index.js            # Application bootstrap
+```
 
-### Making a Progressive Web App
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+## Key Technologies
 
-### Advanced Configuration
+- **ReactJS**: Frontend framework for UI components and state management.
+- **Socket.IO**: Real-time, bidirectional communication.
+- **React Router**: For navigating between login, signup, and chat interfaces.
+- **CSS**: Styling the user interface.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+---
 
-### Deployment
+## Example Screenshots
+![image](https://github.com/user-attachments/assets/b0d4fff1-9a76-4695-8988-7aa28ef26347)
+![image](https://github.com/user-attachments/assets/9af47a7c-c03b-4e3c-bada-ef34fb096ea9)
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+![image](https://github.com/user-attachments/assets/271013c3-3a00-45a4-85bd-98964267752c)
 
-### `npm run build` fails to minify
+### Login Page
+- A user-friendly login interface.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+### Chat Interface
+- A real-time chat room with message history and dynamic updates.
+
+---
+
+## Environment Variables
+
+Configure the server URL in the `socket` initialization within `ChatApp.js`:
+```javascript
+const socket = io("http://localhost:5001", {
+  transports: ["websocket"],
+  cors: {
+    origin: "http://localhost:3000",
+    methods: ["GET", "POST"],
+  },
+});
+```
+
+---
